@@ -1,0 +1,28 @@
+Feature: US10 - Comparacion de servicios funerarios
+  Como usuario
+  Quiero comparar funerarias
+  Para tomar una decision informada
+
+  Scenario: E1 - Comparar dos funerarias
+    Given que el usuario visualiza el catalogo
+    When selecciona dos funerarias
+    Then se muestra una tabla comparativa
+
+    Examples: INPUT
+      | funeraria A      | funeraria B      |
+      | Paz Eterna       | San Miguel       |
+      | Los Olivos       | Cielo Azul       |
+
+    Examples: OUTPUT
+      | tabla comparativa |
+      | generada          |
+
+  Scenario: E2 - Faltan datos en una funeraria
+    Given que el usuario esta comparando
+    When una funeraria no tiene informacion
+    Then el sistema muestra un mensaje
+
+  Scenario: E3 - Cambiar funeraria seleccionada
+    Given que el usuario esta comparando funerarias
+    When reemplaza una funeraria por otra
+    Then la tabla se actualiza

@@ -1,0 +1,23 @@
+Feature: US06 - Acceso a soporte emocional inmediato
+  Como familiar en duelo
+  Quiero iniciar una videollamada con un terapeuta
+  Para recibir apoyo emocional inmediato
+
+  Scenario: E1 - Inicio de videollamada
+    Given que el usuario ha iniciado sesion
+    When selecciona "Conectar con terapeuta"
+    Then se inicia una videollamada con un terapeuta disponible
+
+    Examples: OUTPUT
+      | estado                      |
+      | videollamada iniciada       |
+
+  Scenario: E2 - Sin terapeutas disponibles
+    Given que el usuario solicita soporte emocional
+    When no hay terapeutas disponibles
+    Then se muestra un mensaje con el tiempo de espera estimado
+
+  Scenario: E3 - Cancelar videollamada
+    Given que la videollamada esta en curso
+    When el usuario presiona "Cancelar llamada"
+    Then la llamada termina y vuelve a la pantalla anterior

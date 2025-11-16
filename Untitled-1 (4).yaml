@@ -1,0 +1,35 @@
+Feature: US01 - Registro de usuario
+  Como usuario nuevo
+  Quiero crear una cuenta en la aplicacion
+  Para acceder a los servicios de Alma Digital
+
+  Scenario: E1 - Registro exitoso
+    Given que el usuario se encuentra en la pantalla de registro
+    And ingresa datos validos
+    When presiona el boton "Crear cuenta"
+    Then la cuenta es creada y es redirigido a la pantalla principal
+
+  Scenario: E2 - Datos invalidos
+    Given que el usuario se encuentra en la pantalla de registro
+    When ingresa un correo o contrasena invalida
+    Then se muestra un mensaje indicando el error
+
+  Scenario: E3 - Cuenta ya existente
+    Given que el usuario ingresa un correo registrado
+    When intenta crear la cuenta
+    Then se muestra un mensaje indicando que el correo ya esta asociado a otra cuenta
+
+  Scenario: E4 - Registro con datos detallados
+    Given que el usuario desea crear una cuenta
+    When completa los campos del formulario
+    And presiona "Crear cuenta"
+    Then la aplicacion valida los datos y crea la cuenta
+
+    Examples: INPUT
+      | nombre | correo               | contrasena |
+      | lucas  | lucas@mail.com       | 123abcde   |
+      | sofia  | sofi_example@mail.pe | 2024abc!   |
+
+    Examples: OUTPUT
+      | estado       |
+      | cuenta creada |

@@ -1,0 +1,29 @@
+Feature: US09 - Visualizacion del catalogo de funerarias
+  Como usuario
+  Quiero ver la lista de funerarias
+  Para elegir una opcion adecuada a mis necesidades
+
+  Scenario: E1 - Visualizar catalogo
+    Given que el usuario ha iniciado sesion
+    When ingresa a la seccion "Servicios funerarios"
+    Then se muestra la lista de funerarias
+
+  Scenario: E2 - Buscar funeraria por nombre
+    Given que el usuario visualiza el catalogo
+    When escribe el nombre en la barra de busqueda
+    Then se muestran las coincidencias
+
+    Examples: INPUT
+      | nombre buscado |
+      | paz eterna     |
+      | san miguel     |
+
+    Examples: OUTPUT
+      | funerarias encontradas     |
+      | Funeraria Paz Eterna       |
+      | Funeraria San Miguel       |
+
+  Scenario: E3 - Filtrar funerarias por ubicacion
+    Given que el usuario visualiza el catalogo
+    When selecciona una ubicacion en el filtro
+    Then se actualiza la lista segun esa zona

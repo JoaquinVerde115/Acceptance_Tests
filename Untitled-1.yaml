@@ -1,0 +1,30 @@
+Feature: US18 - Creacion de memorial digital
+  Como usuario
+  Quiero crear un memorial digital
+  Para recordar a un ser querido
+
+  Scenario: E1 - Crear memorial exitosamente
+    Given que el usuario ha iniciado sesion
+    When ingresa los datos del memorial
+    And presiona "Guardar"
+    Then se registra el memorial
+    And aparece en la lista de memoriales
+
+    Examples: INPUT
+      | nombre      | descripcion               |
+      | Maria Lopez | Siempre en nuestros corazones |
+      | Juan Perez  | Recordado con amor            |
+
+    Examples: OUTPUT
+      | estado            |
+      | memorial creado   |
+
+  Scenario: E2 - Datos faltantes
+    Given que el usuario intenta crear un memorial
+    When deja campos vacios
+    Then el sistema muestra un mensaje
+
+  Scenario: E3 - Editar memorial
+    Given que el usuario tiene un memorial creado
+    When modifica informacion
+    Then el memorial se actualiza correctamente
